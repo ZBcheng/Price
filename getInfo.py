@@ -23,7 +23,7 @@ class GetInfo:
 			house_list = soup.find_all('li', class_="list-item")
 
 			list = []
-
+			loc = '雁塔'
 			for house in house_list:
 				name = house.find('div', class_='house-title').a.text.strip()
 				price = house.find('span', class_='price-det').text.strip()
@@ -40,11 +40,11 @@ class GetInfo:
 				tag_list = house.find_all('span', class_='item-tags')
 				tags = [i.text for i in tag_list]
 
+				if loc in name:
+					print(name, price, price_area, no_room, area, floor, year, broker, address, tags)
+					dict = {'name': name, 'price': price, 'no_room': no_room, 'area': area, 'floor': floor, 'year': year, 'broker': broker, 'address': address, 'tags': tags}
 
-				print(name, price, price_area, no_room, area, floor, year, broker, address, tags)
-				dict = {'name': name, 'price': price, 'no_room': no_room, 'area': area, 'floor': floor, 'year': year, 'broker': broker, 'address': address, 'tags': tags}
-
-				list.append(dict)
+					list.append(dict)
 
 		time.sleep(5)
 

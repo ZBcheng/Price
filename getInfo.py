@@ -8,7 +8,7 @@ class GetInfo:
 		self.city_name = city_name
 
 	def get(self):
-		for i in range(1, 40):
+		for i in range(1, 30):
 			link = 'https://' + self.city_name + '.anjuke.com/sale/p' + str(i)
 			print("第%s页" % (i))
 			headers = {
@@ -40,11 +40,11 @@ class GetInfo:
 				tag_list = house.find_all('span', class_='item-tags')
 				tags = [i.text for i in tag_list]
 
-				if loc in name:
-					print(name, price, price_area, no_room, area, floor, year, broker, address, tags)
-					dict = {'name': name, 'price': price, 'no_room': no_room, 'area': area, 'floor': floor, 'year': year, 'broker': broker, 'address': address, 'tags': tags}
 
-					list.append(dict)
+				print(name, price, price_area, no_room, area, floor, year, broker, address, tags)
+				dict = {'name': name, 'price': price, 'no_room': no_room, 'area': area, 'floor': floor, 'year': year, 'broker': broker, 'address': address, 'tags': tags}
+
+				list.append(dict)
 
 		time.sleep(5)
 

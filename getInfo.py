@@ -8,7 +8,7 @@ class GetInfo:
 		self.city_name = city_name
 
 	def get(self):
-		for i in range(1, 40):
+		for i in range(1, 50):
 			link = 'https://' + self.city_name + '.anjuke.com/sale/p' + str(i)
 			print("第%s页" % (i))
 			headers = {

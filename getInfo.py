@@ -5,11 +5,11 @@ import time
 class GetInfo:
 
 	def __init__(self, city_name):
-		self.city_name = None
+		self.city_name = city_name
 
 	def get(self):
 		for i in range(1, 40):
-			link = 'https://xian.anjuke.com/sale/p' + str(i)
+			link = 'https://' + self.city_name + '.anjuke.com/sale/p' + str(i)
 			print("第%s页" % (i))
 			headers = {
 				'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36',
@@ -23,6 +23,7 @@ class GetInfo:
 			house_list = soup.find_all('li', class_="list-item")
 
 			list = []
+
 			for house in house_list:
 				name = house.find('div', class_='house-title').a.text.strip()
 				price = house.find('span', class_='price-det').text.strip()
@@ -38,6 +39,7 @@ class GetInfo:
 				address = address.replace('\xa0\xa0\n           ', '  ')
 				tag_list = house.find_all('span', class_='item-tags')
 				tags = [i.text for i in tag_list]
+
 
 				print(name, price, price_area, no_room, area, floor, year, broker, address, tags)
 				dict = {'name': name, 'price': price, 'no_room': no_room, 'area': area, 'floor': floor, 'year': year, 'broker': broker, 'address': address, 'tags': tags}
